@@ -16,5 +16,18 @@ namespace NetworkAdaptool
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            NetworkAdapter[] netadapters = NetworkAdapter.getNetworkAdapters();
+            List<string> names = new List<string>();
+
+            foreach(NetworkAdapter netadapter in netadapters)
+            {
+                names.Add(netadapter.strName);
+            }
+
+            listBox1.Items.AddRange(names.ToArray());
+        }
     }
 }
