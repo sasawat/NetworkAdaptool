@@ -42,6 +42,14 @@ namespace NetworkAdaptool
             }
             private set { }
         }
+        public bool isDHCPEnabled
+        {
+            get
+            {
+                return (bool)moAdapterCfg["DHCPEnabled"];
+            }
+            private set { }
+        }
 
         private NetworkAdapter(ManagementObject moNetworkAdapater, ManagementObject moNetworkAdapterConfiguration)
         {
