@@ -21,13 +21,17 @@ namespace NetworkAdaptool
         {
             NetworkAdapter[] netadapters = NetworkAdapter.getNetworkAdapters();
             List<string> names = new List<string>();
+            listBox1.Items.AddRange(netadapters);
+        }
 
-            foreach(NetworkAdapter netadapter in netadapters)
-            {
-                names.Add(netadapter.strName);
-            }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ((NetworkAdapter)listBox1.SelectedItem).enable();
+        }
 
-            listBox1.Items.AddRange(names.ToArray());
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ((NetworkAdapter)listBox1.SelectedItem).disable();
         }
     }
 }
