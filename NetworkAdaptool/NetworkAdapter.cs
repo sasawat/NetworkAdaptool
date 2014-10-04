@@ -72,13 +72,16 @@ namespace NetworkAdaptool
             ManagementObjectCollection mocAdapterCollection = mcWin32_NetworkAdapter.GetInstances();
 
             //Collate the NetworkAdapter objects and the NetworkAdapterConfiguration objects by InterfaceIndex
-            foreach(ManagementObject moAdapterCfg in mocAdapterCfgCollection)
+            foreach(ManagementObject moAdapter in mocAdapterCollection)
             {
                 //Check that the NetworkAdapterConfiguration is tcp/ip and not Firewire/etc. 
-                if((bool)moAdapterCfg["IPEnabled"])
+                string strAdapterType = (string)moAdapter["AdapterType"];
+                if(strAdapterType == "Wireless" || 
+                    strAdapterType == "Ethernet 802.3" || 
+                    strAdapterType == "Wide Area Network (WAN)")
                 {
                     //Find the correlated NetworkAdapter by use of InterfaceIndex property.
-                    foreach(ManagementObject moAdapter in mocAdapterCollection)
+                    foreach(ManagementObject moAdapterCfg in mocAdapterCfgCollection)
                     {
                         if((uint)moAdapter["InterfaceIndex"] == (uint)moAdapterCfg["InterfaceIndex"])
                         {
@@ -95,6 +98,11 @@ namespace NetworkAdaptool
             return listAdapters.ToArray();
         }
 
+        /// <summary>
+        /// Sets a static IP
+        /// </summary>
+        /// <param name="strIp">String containing the IP address to set. Can be IPV4 or IPV6. e.g. "13.37.69.69"</param>
+        /// <param name="strSubnetMask">String containing the subnet mask for the IP. Not cidr stuff. e.g. "255.255.255.0</param>
         public void setStaticIP(string strIp, string strSubnetMask)
         {
             //Make a ManagementBaseObject for parameters for the call to enable static ip
@@ -106,6 +114,24 @@ namespace NetworkAdaptool
 
             //Make the call
             moAdapterCfg.InvokeMethod("EnableStatic", mboNewIP, null);
+        }
+
+        /// <summary>
+        /// Sets the default gateway
+        /// </summary>
+        /// <param name="strIp">String containing the IP address of the default gateway. e.g. "13.37.69.254"</param>
+        public void setDefaultGateway(string strIp)
+        {
+            //Make the ManagementBaseOBject for parameters for the call to set gateway
+            ManagementBaseObject mboNewGateway = moAdapterCfg.GetMethodParameters("SetGateways");
+
+            //Populate the parameters
+            //Cost metric is usually 1 so we'll just go with that.
+            mboNewGateway["GatewayCostMetric"] = new UInt16[] { 1 };
+            mboNewGateway["DefaultIPGateway"] = new string[] { strIp };
+
+            //Make the call
+            moAdapterCfg.InvokeMethod("SetGateways", mboNewGateway, null);
         }
 
         /// <summary>
@@ -136,12 +162,32 @@ namespace NetworkAdaptool
         }
 
         /// <summary>
+        /// Tells the network adapter to get the IP address of the DNS server automatically
+        /// </summary>
+        public void setDNSServerDynamic()
+        {
+            //Setting DNS server search order with no arguments is dynamically get DNS server address
+            moAdapterCfg.InvokeMethod("SetDNSServerSearchOrder", new object[] { });
+        }
+
+        /// <summary>
+        /// Sets the DNS servers for which the network adapter will query 
+        /// </summary>
+        /// <param name="strarrIps">Array of strings containing IP addresses of desired DNS servers</param>
+        public void setDNSServers(string[] strarrIps)
+        {
+            //Make a ManagementBaseObject for parameters for the call to SetDNSServerSearchOrder
+            ManagementBaseObject mboNewGateway = moAdapterCfg.GetMethodParameters("SetDNSServerSearchOrder");
+            mboNewGateway["DNSServerSearchOrder"] = strarrIps;
+        }
+
+        /// <summary>
         /// Enables the network adapter
         /// </summary>
         public void enable()
         {
             //Enable has no paramters so we can just call it
-            moAdapter.InvokeMethod("Enable", new object[] { });
+            moAdapter.InvokeMethod("Enable", moAdapter.GetMethodParameters("Enable"), null);
         }
 
         /// <summary>
@@ -150,7 +196,12 @@ namespace NetworkAdaptool
         public void disable()
         {
             //Disable has no paramters so we can just call it
-            moAdapter.InvokeMethod("Disable", new object[] { });
+            moAdapter.InvokeMethod("Disable", moAdapter.GetMethodParameters("Disable"), null);
+        }
+
+        public override string ToString()
+        {
+            return strName;
         }
     }
 
