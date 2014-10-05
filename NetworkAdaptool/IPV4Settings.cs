@@ -15,14 +15,16 @@ namespace NetworkAdaptool
         public string strDNS1;
         public string strDNS2;
         public string strDefaultGateway;
+        public string strName;
 
-        public IPV4Settings(string strIpAddr, string strSubnetMask, string strDNS1, string strDNS2, string strDefaultGateway)
+        public IPV4Settings(string strIpAddr, string strSubnetMask, string strDNS1, string strDNS2, string strDefaultGateway, string strName)
         {
             this.strIpAddr = strIpAddr;
             this.strSubnetMask = strSubnetMask;
             this.strDNS1 = strDNS1;
             this.strDNS2 = strDNS2;
             this.strDefaultGateway = strDefaultGateway;
+            this.strName = strName;
         }
 
         public IPV4Settings(SerializationInfo info, StreamingContext context)
@@ -34,6 +36,7 @@ namespace NetworkAdaptool
             }
 
             //Deserialize
+            strName = (string)info.GetValue("strName", typeof(string));
             strIpAddr = (string)info.GetValue("strIpAddr", typeof(string));
             strSubnetMask = (string)info.GetValue("strSubnetMask", typeof(string));
             strDNS1 = (string)info.GetValue("strDNS1", typeof(string));
@@ -50,6 +53,7 @@ namespace NetworkAdaptool
             info.AddValue("strDNS1", strDNS1, typeof(string));
             info.AddValue("strDNS2", strDNS2, typeof(string));
             info.AddValue("strDefaultGateway", strDefaultGateway, typeof(string));
+            info.AddValue("strName", strName, typeof(string));
         }
     }
 }
