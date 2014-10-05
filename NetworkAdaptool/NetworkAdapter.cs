@@ -18,11 +18,25 @@ namespace NetworkAdaptool
         public string strName { get; private set; }
         public string strAdapterType { get; private set; }
         public string strCaption { get; private set; }
-        public string strIpAddr 
-        { 
+        public string strIpAddr
+        {
             get
             {
-                return (string)moAdapterCfg["IPAddress"];
+                try
+                {
+                    return (string)moAdapterCfg["IPAddress"];
+                }
+                catch (Exception ex)
+                {
+                    if (refreshNetworkAdapterConfigurationObject())
+                    {
+                        return (string)moAdapterCfg["IPAddress"];
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
             }
             private set { }
         }
@@ -30,15 +44,34 @@ namespace NetworkAdaptool
         {
             get
             {
-                return (string)moAdapterCfg["SubnetMask"];
+                try
+                {
+                    return (string)moAdapterCfg["SubnetMask"];
+                }
+                catch (Exception ex)
+                {
+                    if (refreshNetworkAdapterConfigurationObject())
+                    {
+                        return (string)moAdapterCfg["SubnetMask"];
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
             }
             private set { }
         }
         public bool isEnabled
         {
-            get 
+            get
             {
-                return (bool)this.moAdapter["NetEnabled"];
+                bool retval = (bool)this.moAdapter["NetEnabled"];
+                if(retval == null)
+                {
+                    return false;
+                }
+                return retval;
             }
             private set { }
         }
@@ -46,7 +79,21 @@ namespace NetworkAdaptool
         {
             get
             {
-                return (bool)moAdapterCfg["DHCPEnabled"];
+                try
+                {
+                    return (bool)moAdapterCfg["DHCPEnabled"];
+                }
+                catch (Exception ex)
+                {
+                    if (refreshNetworkAdapterConfigurationObject())
+                    {
+                        return (bool)moAdapterCfg["DHCPEnabled"];
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
             private set { }
         }
@@ -68,42 +115,119 @@ namespace NetworkAdaptool
         {
             List<NetworkAdapter> listAdapters = new List<NetworkAdapter>();
 
-            //Computer System Hardware Classes
-            //Win32_NetworkAdapterConfiguration and Win32_NetworkAdapter were chosen despite being depreciated
-            //for backwards compatibility for Windows 7. At some point in the future, we should detect whether
-            //the application is running on Windows 8, 10, etc. or prior and choose the correct ManagementClass
+            //Get the network adapters for that are tcp/ip
+            ManagementObject[] moArrAdapters = getNetworkAdapterMOs();
+
+            //Win32_NetworkAdapterConfiguration was chosen despite being depreciated for backwards compatibility for Windows 7. 
+            //At some point in the future, we should detect whether the application is running on Windows 8, 10, etc.
             ManagementClass mcWin32_NetworkAdapterConfiguration = new ManagementClass("Win32_NetworkAdapterConfiguration");
-            ManagementClass mcWin32_NetworkAdapter = new ManagementClass("Win32_NetworkAdapter");
 
             //Retrieve the objects that are of the classes specified above
             ManagementObjectCollection mocAdapterCfgCollection = mcWin32_NetworkAdapterConfiguration.GetInstances();
-            ManagementObjectCollection mocAdapterCollection = mcWin32_NetworkAdapter.GetInstances();
 
             //Collate the NetworkAdapter objects and the NetworkAdapterConfiguration objects by InterfaceIndex
-            foreach(ManagementObject moAdapter in mocAdapterCollection)
+            foreach (ManagementObject moAdapter in moArrAdapters)
             {
-                //Check that the NetworkAdapterConfiguration is tcp/ip and not Firewire/etc. 
-                string strAdapterType = (string)moAdapter["AdapterType"];
-                if(strAdapterType == "Wireless" || 
-                    strAdapterType == "Ethernet 802.3" || 
-                    strAdapterType == "Wide Area Network (WAN)")
+                //Find the correlated NetworkAdapter by use of InterfaceIndex property.
+                bool found = false;
+                foreach (ManagementObject moAdapterCfg in mocAdapterCfgCollection)
                 {
-                    //Find the correlated NetworkAdapter by use of InterfaceIndex property.
-                    foreach(ManagementObject moAdapterCfg in mocAdapterCfgCollection)
+                    if ((uint)moAdapter["InterfaceIndex"] == (uint)moAdapterCfg["InterfaceIndex"])
                     {
-                        if((uint)moAdapter["InterfaceIndex"] == (uint)moAdapterCfg["InterfaceIndex"])
-                        {
-                            //Yay~! We found it. Add it to the list and break;.
-                            listAdapters.Add(new NetworkAdapter(moAdapter, moAdapterCfg));
-                            break;
-                        }
+                        //Yay~! We found it. Add it to the list and break;.
+                        listAdapters.Add(new NetworkAdapter(moAdapter, moAdapterCfg));
+                        found = true;
+                        break;
                     }
                 }
-                
+                if (!found)
+                {
+                    //Generate an adapter with a null configuration, i.e., it's disabled
+                    listAdapters.Add(new NetworkAdapter(moAdapter, null));
+                }
+
+
             }
 
             //Convert our list to an array and return it.
             return listAdapters.ToArray();
+        }
+
+        /// <summary>
+        /// Gets all the Win32_NetworkAdapter objects for TCP/IP network adapters on the system
+        /// </summary>
+        /// <returns>An array of the ManagementObjects found</returns>
+        private static ManagementObject[] getNetworkAdapterMOs()
+        {
+            List<ManagementObject> listNetworkAdapterMOs = new List<ManagementObject>();
+
+            //Win32_NetworkAdapter was chosen despite being depreciated for backwards compatibility for Windows 7. 
+            //At some point in the future, we should detect whether the application is running on Windows 8, 10, etc.
+            ManagementClass mcWin32_NetworkAdapter = new ManagementClass("Win32_NetworkAdapter");
+
+            //Retrieve the objects of the Win32_NetworkAdapter class
+            ManagementObjectCollection mocAdapterCollection = mcWin32_NetworkAdapter.GetInstances();
+
+            //Get the adapters which are tcp/ip and add them to our list
+            foreach (ManagementObject moAdapter in mocAdapterCollection)
+            {
+                bool enabled;
+                    try{
+                        enabled = (bool)moAdapter["NetEnabled"];
+                    }catch(Exception ex)
+                    {
+                        enabled = false;
+                    }
+                //Check that the NetworkAdapterConfiguration is tcp/ip and not Firewire/etc. 
+                if (
+                    enabled ||
+                    ((string)moAdapter["Name"]).Contains("Ethernet") ||
+                    ((string)moAdapter["Name"]).Contains("Wireless")
+                    )
+                {
+                    //if so add it
+                    listNetworkAdapterMOs.Add(moAdapter);
+                }
+            }
+
+            return listNetworkAdapterMOs.ToArray();
+        }
+
+        /// <summary>
+        /// Checks to see whether or not the adapter is enabled or not. 
+        /// If the adapter is disable, it sets the adapter config to null and returns false.
+        /// If the adapter is enable, it updates the object's adapter config ManagementObject.
+        /// </summary>
+        /// <returns>true if moAdapterCfg is a valid Win32_NetworkAdapterConfiguration ManagementObject</returns>
+        private bool refreshNetworkAdapterConfigurationObject()
+        {
+            //Check whether the adapter is enabled or not
+            //Disabled adapters do not have adapter configuration objects
+            if (!this.isEnabled)
+            {
+                moAdapterCfg = null;
+                return false;
+            }
+
+            //Win32_NetworkAdapterConfiguration was chosen despite being depreciated for backwards compatibility for Windows 7. 
+            //At some point in the future, we should detect whether the application is running on Windows 8, 10, etc.
+            ManagementClass mcWin32_NetworkAdapterConfiguration = new ManagementClass("Win32_NetworkAdapterConfiguration");
+
+            //Retrieve the objects that are of the classes specified above
+            ManagementObjectCollection mocAdapterCfgCollection = mcWin32_NetworkAdapterConfiguration.GetInstances();
+
+            foreach (ManagementObject moNewAdapterCfg in mocAdapterCfgCollection)
+            {
+                if ((uint)moAdapter["InterfaceIndex"] == (uint)moNewAdapterCfg["InterfaceIndex"])
+                {
+                    //Yay~! We found it!
+                    moAdapterCfg = moNewAdapterCfg;
+                    return true;
+                }
+            }
+
+            //It's enabled but we couldn't find a configuration. 
+            return false;
         }
 
         /// <summary>
@@ -113,6 +237,11 @@ namespace NetworkAdaptool
         /// <param name="strSubnetMask">String containing the subnet mask for the IP. Not cidr stuff. e.g. "255.255.255.0</param>
         public void setStaticIP(string strIp, string strSubnetMask)
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             //Make a ManagementBaseObject for parameters for the call to enable static ip
             ManagementBaseObject mboNewIP = moAdapterCfg.GetMethodParameters("EnableStatic");
 
@@ -130,6 +259,11 @@ namespace NetworkAdaptool
         /// <param name="strIp">String containing the IP address of the default gateway. e.g. "13.37.69.254"</param>
         public void setDefaultGateway(string strIp)
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             //Make the ManagementBaseOBject for parameters for the call to set gateway
             ManagementBaseObject mboNewGateway = moAdapterCfg.GetMethodParameters("SetGateways");
 
@@ -147,6 +281,11 @@ namespace NetworkAdaptool
         /// </summary>
         public void enableDHCP()
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             //Enable DHCP has no paramters so we can just call it
             moAdapterCfg.InvokeMethod("EnableDHCP", new object[] { });
         }
@@ -156,6 +295,11 @@ namespace NetworkAdaptool
         /// </summary>
         public void releaseDHCP()
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             //Release DHCP has no paramters so we can just call it
             moAdapterCfg.InvokeMethod("ReleaseDHCPLease", new object[] { });
         }
@@ -165,6 +309,11 @@ namespace NetworkAdaptool
         /// </summary>
         public void renewDHCP()
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             //Renew DHCP has no paramters so we can just call it
             moAdapterCfg.InvokeMethod("RenewDHCPLease", new object[] { });
         }
@@ -174,6 +323,11 @@ namespace NetworkAdaptool
         /// </summary>
         public void setDNSServerDynamic()
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             //Setting DNS server search order with no arguments is dynamically get DNS server address
             moAdapterCfg.InvokeMethod("SetDNSServerSearchOrder", new object[] { });
         }
@@ -184,6 +338,11 @@ namespace NetworkAdaptool
         /// <param name="strarrIps">Array of strings containing IP addresses of desired DNS servers</param>
         public void setDNSServers(string[] strarrIps)
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             //Make a ManagementBaseObject for parameters for the call to SetDNSServerSearchOrder
             ManagementBaseObject mboNewGateway = moAdapterCfg.GetMethodParameters("SetDNSServerSearchOrder");
             mboNewGateway["DNSServerSearchOrder"] = strarrIps;
