@@ -62,12 +62,105 @@ namespace NetworkAdaptool
             }
             private set { }
         }
+        public string strMACAddr
+        {
+            get
+            {
+                string retval;
+                try
+                {
+                    retval = (string)this.moAdapter["MACAddress"];
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                }
+                return retval;
+            }
+            private set
+            {
+
+            }
+        }
+        public string strNetConnectionID
+        {
+            get
+            {
+                string retval;
+                try
+                {
+                    retval = (string)this.moAdapter["NetConnectionID"];
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                }
+                return retval;
+            }
+            private set
+            {
+
+            }
+        }
+        public string strNetConnectionStatus
+        {
+            get
+            {
+                UInt16 statuscode;
+                try
+                {
+                    statuscode = (UInt16)this.moAdapter["MACAddress"];
+                }
+                catch (Exception ex)
+                {
+                    return "ManagementObject Error";
+                }
+                switch(statuscode)
+                {
+                    case 0:
+                        return "Disconnected";
+                    case 1:
+                        return "Connecting";
+                    case 2:
+                        return "Connected";
+                    case 3:
+                        return "Disconnecting";
+                    case 4:
+                        return "Hardware not present";
+                    case 5:
+                        return "Hardware disabled";
+                    case 6:
+                        return "Hardware malfunction";
+                    case 7:
+                        return "Media disconnected";
+                    case 8:
+                        return "Authenticating";
+                    case 9:
+                        return "Authentication succeeded";
+                    case 10:
+                        return "Authentication failed";
+                    case 11:
+                        return "Invalid address";
+                    case 12:
+                        return "Credentials required";
+                    default:
+                        return "ManagementObject Error";
+                }
+            }
+            private set
+            {
+
+            }
+        }
+
         public bool isEnabled
         {
             get
             {
-                bool retval = (bool)this.moAdapter["NetEnabled"];
-                if(retval == null)
+                bool retval;
+                try{
+                    retval = (bool)this.moAdapter["NetEnabled"];
+                }catch(Exception ex)
                 {
                     return false;
                 }
@@ -94,6 +187,23 @@ namespace NetworkAdaptool
                         return false;
                     }
                 }
+            }
+            private set { }
+        }
+        public bool isPhysicalAdapter
+        {
+            get
+            {
+                bool retval;
+                try
+                {
+                    retval = (bool)this.moAdapter["PhysicalAdapter"];
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+                return retval;
             }
             private set { }
         }
