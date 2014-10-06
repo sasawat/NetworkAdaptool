@@ -24,13 +24,13 @@ namespace NetworkAdaptool
             {
                 try
                 {
-                    return (string)moAdapterCfg["IPAddress"];
+                    return ((string[])moAdapterCfg["IPAddress"])[0];
                 }
                 catch (Exception ex)
                 {
                     if (refreshNetworkAdapterConfigurationObject())
                     {
-                        return (string)moAdapterCfg["IPAddress"];
+                        return ((string[])moAdapterCfg["IPAddress"])[0];
                     }
                     else
                     {
@@ -46,13 +46,97 @@ namespace NetworkAdaptool
             {
                 try
                 {
-                    return (string)moAdapterCfg["SubnetMask"];
+                    return ((string[])moAdapterCfg["IPSubnet"])[0];
                 }
                 catch (Exception ex)
                 {
                     if (refreshNetworkAdapterConfigurationObject())
                     {
-                        return (string)moAdapterCfg["SubnetMask"];
+                        return ((string[])moAdapterCfg["IPSubnet"])[0];
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
+            private set { }
+        }
+        public string strDefaultGateway
+        {
+            get
+            {
+                try
+                {
+                    return ((string[])moAdapterCfg["DefaultIPGateway"])[0];
+                }
+                catch (Exception ex)
+                {
+                    if (refreshNetworkAdapterConfigurationObject())
+                    {
+                        try
+                        {
+                            return ((string[])moAdapterCfg["DefaultIPGateway"])[0];
+                        }catch(Exception sEx)
+                        {
+                            return "";
+                        }
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
+            private set { }
+        }
+        public string strDNS1
+        {
+            get
+            {
+                try
+                {
+                    return ((string[])moAdapterCfg["DNSServerSearchOrder"])[0];
+                }
+                catch (Exception ex)
+                {
+                    if (refreshNetworkAdapterConfigurationObject())
+                    {
+                        try
+                        {
+                            return ((string[])moAdapterCfg["DNSServerSearchOrder"])[0];
+                        }catch(Exception sEx)
+                        {
+                            return "";
+                        }
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
+            private set { }
+        }
+        public string strDNS2
+        {
+            get
+            {
+                try
+                {
+                    return ((string[])moAdapterCfg["DNSServerSearchOrder"])[1];
+                }
+                catch (Exception ex)
+                {
+                    if (refreshNetworkAdapterConfigurationObject())
+                    {
+                        try
+                        {
+                            return ((string[])moAdapterCfg["DNSServerSearchOrder"])[1];
+                        }catch(Exception sEx)
+                        {
+                            return "";
+                        }
                     }
                     else
                     {
@@ -109,7 +193,7 @@ namespace NetworkAdaptool
                 UInt16 statuscode;
                 try
                 {
-                    statuscode = (UInt16)this.moAdapter["MACAddress"];
+                    statuscode = (UInt16)this.moAdapter["NetConnectionStatus"];
                 }
                 catch (Exception ex)
                 {

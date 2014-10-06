@@ -21,17 +21,63 @@ namespace NetworkAdaptool
         {
             NetworkAdapter[] netadapters = NetworkAdapter.getNetworkAdapters();
             List<string> names = new List<string>();
-            listBox1.Items.AddRange(netadapters);
+            lbxAdapters.Items.AddRange(netadapters);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ((NetworkAdapter)listBox1.SelectedItem).enable();
+            ((NetworkAdapter)lbxAdapters.SelectedItem).enable();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ((NetworkAdapter)listBox1.SelectedItem).disable();
+            ((NetworkAdapter)lbxAdapters.SelectedItem).disable();
+        }
+
+        private void lbxAdapters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Repopulate all the fields
+            NetworkAdapter naSelected = (NetworkAdapter)lbxAdapters.SelectedItem;
+
+            log("Populating Adapter Information");
+            tbxAdapterName.Text = naSelected.strName;
+            tbxAdapterType.Text = naSelected.strAdapterType;
+            tbxAdapterStatus.Text = naSelected.strNetConnectionStatus;
+            tbxAdapterMACAddr.Text = naSelected.strMACAddr;
+            tbxIsPhysical.Text = naSelected.isPhysicalAdapter ? "Yes" : "No";
+            tbxNetConnectionID.Text = naSelected.strNetConnectionID;
+
+            reloadIPV4Settings(naSelected);
+        }
+
+        private void reloadIPV4Settings(NetworkAdapter na)
+        {
+            log("Reading IPV4 Settings");
+            if (!na.isEnabled)
+            {
+                log("Adapter Disabled, no IPV4 settings");
+                return;
+            }
+            tbxIPAddr.Text = na.strIpAddr;
+            tbxSubnetMask.Text = na.strSubnetMask;
+            tbxDefaultGateway.Text = na.strDefaultGateway;
+            if(na.isDHCPEnabled)
+            {
+                rbtnStaticIP.Checked = true;
+            }else
+            {
+                rbtnDHCP.Checked = true;
+            }
+            rbtnStaticDNS.Checked = true;
+            tbxDNS1.Text = na.strDNS1;
+            tbxDNS2.Text = na.strDNS2;
+            //Cannot check whether we want static or auto DNS so we just static
+            rbtnStaticDNS.Checked = true; 
+        }
+
+        public void log(string strMessage)
+        {
+            tbxLog.Text += strMessage + "\n";
         }
     }
 }
