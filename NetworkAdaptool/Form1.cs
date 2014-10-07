@@ -22,16 +22,23 @@ namespace NetworkAdaptool
             NetworkAdapter[] netadapters = NetworkAdapter.getNetworkAdapters();
             List<string> names = new List<string>();
             lbxAdapters.Items.AddRange(netadapters);
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ((NetworkAdapter)lbxAdapters.SelectedItem).enable();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ((NetworkAdapter)lbxAdapters.SelectedItem).disable();
+            //Make sure all the controls are disabled until an item is selected
+            btnApplyIPV4.Enabled = false;
+            btnDisable.Enabled = false;
+            btnDisableEnable.Enabled = false;
+            btnEnable.Enabled = false;
+            btnRelease.Enabled = false;
+            btnReleaseRenew.Enabled = false;
+            btnReleaseRenewAll.Enabled = false;
+            btnReloadIPV4.Enabled = false;
+            btnRenew.Enabled = false;
+            btnSaveIPV4Profile.Enabled = false;
+            tbxDefaultGateway.Enabled = false;
+            tbxDNS1.Enabled = false;
+            tbxDNS2.Enabled = false;
+            tbxIPAddr.Enabled = false;
+            tbxSubnetMask.Enabled = false;
         }
 
         private void lbxAdapters_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,6 +55,28 @@ namespace NetworkAdaptool
             tbxNetConnectionID.Text = naSelected.strNetConnectionID;
 
             reloadIPV4Settings(naSelected);
+
+            //Enable buttons and stuff
+            if (btnSaveIPV4Profile.Enabled == false)
+            {
+                log("Enabling settings");
+                btnApplyIPV4.Enabled = true;
+                btnDisable.Enabled = true;
+                btnDisableEnable.Enabled = true;
+                btnEnable.Enabled = true;
+                btnRelease.Enabled = true;
+                btnReleaseRenew.Enabled = true;
+                btnReleaseRenewAll.Enabled = true;
+                btnReloadIPV4.Enabled = true;
+                btnRenew.Enabled = true;
+                btnSaveIPV4Profile.Enabled = true;
+                tbxDefaultGateway.Enabled = true;
+                tbxDNS1.Enabled = true;
+                tbxDNS2.Enabled = true;
+                tbxIPAddr.Enabled = true;
+                tbxSubnetMask.Enabled =true;
+            }
+            
         }
 
         private void reloadIPV4Settings(NetworkAdapter na)
@@ -77,7 +106,11 @@ namespace NetworkAdaptool
 
         public void log(string strMessage)
         {
-            tbxLog.Text += strMessage + "\n";
+            tbxLog.Text += strMessage + "\r\n";
+        }
+
+        private void btnEnable_Click(object sender, EventArgs e)
+        {
         }
     }
 }

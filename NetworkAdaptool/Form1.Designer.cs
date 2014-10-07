@@ -35,6 +35,10 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profileManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnSaveIPV4Profile = new System.Windows.Forms.Button();
+            this.btnReloadIPV4 = new System.Windows.Forms.Button();
+            this.btnApplyIPV4 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbtnAutoDNS = new System.Windows.Forms.RadioButton();
             this.rbtnStaticDNS = new System.Windows.Forms.RadioButton();
@@ -74,10 +78,6 @@
             this.btnReleaseRenewAll = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.tbxLog = new System.Windows.Forms.TextBox();
-            this.btnApplyIPV4 = new System.Windows.Forms.Button();
-            this.btnReloadIPV4 = new System.Windows.Forms.Button();
-            this.btnSaveIPV4Profile = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.MenuBar.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -147,6 +147,41 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "IPV4 Settings";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(10, 19);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(345, 21);
+            this.comboBox1.TabIndex = 11;
+            // 
+            // btnSaveIPV4Profile
+            // 
+            this.btnSaveIPV4Profile.Location = new System.Drawing.Point(233, 46);
+            this.btnSaveIPV4Profile.Name = "btnSaveIPV4Profile";
+            this.btnSaveIPV4Profile.Size = new System.Drawing.Size(122, 23);
+            this.btnSaveIPV4Profile.TabIndex = 10;
+            this.btnSaveIPV4Profile.Text = "Save Profile";
+            this.btnSaveIPV4Profile.UseVisualStyleBackColor = true;
+            // 
+            // btnReloadIPV4
+            // 
+            this.btnReloadIPV4.Location = new System.Drawing.Point(361, 48);
+            this.btnReloadIPV4.Name = "btnReloadIPV4";
+            this.btnReloadIPV4.Size = new System.Drawing.Size(122, 23);
+            this.btnReloadIPV4.TabIndex = 9;
+            this.btnReloadIPV4.Text = "Undo Changes";
+            this.btnReloadIPV4.UseVisualStyleBackColor = true;
+            // 
+            // btnApplyIPV4
+            // 
+            this.btnApplyIPV4.Location = new System.Drawing.Point(361, 19);
+            this.btnApplyIPV4.Name = "btnApplyIPV4";
+            this.btnApplyIPV4.Size = new System.Drawing.Size(122, 23);
+            this.btnApplyIPV4.TabIndex = 8;
+            this.btnApplyIPV4.Text = "Apply";
+            this.btnApplyIPV4.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -435,6 +470,7 @@
             this.btnEnable.TabIndex = 4;
             this.btnEnable.Text = "Enable Adapter";
             this.btnEnable.UseVisualStyleBackColor = true;
+            this.btnEnable.Click += new System.EventHandler(this.btnEnable_Click);
             // 
             // btnDisable
             // 
@@ -517,41 +553,6 @@
             this.tbxLog.Name = "tbxLog";
             this.tbxLog.Size = new System.Drawing.Size(241, 167);
             this.tbxLog.TabIndex = 13;
-            // 
-            // btnApplyIPV4
-            // 
-            this.btnApplyIPV4.Location = new System.Drawing.Point(361, 19);
-            this.btnApplyIPV4.Name = "btnApplyIPV4";
-            this.btnApplyIPV4.Size = new System.Drawing.Size(122, 23);
-            this.btnApplyIPV4.TabIndex = 8;
-            this.btnApplyIPV4.Text = "Apply";
-            this.btnApplyIPV4.UseVisualStyleBackColor = true;
-            // 
-            // btnReloadIPV4
-            // 
-            this.btnReloadIPV4.Location = new System.Drawing.Point(361, 48);
-            this.btnReloadIPV4.Name = "btnReloadIPV4";
-            this.btnReloadIPV4.Size = new System.Drawing.Size(122, 23);
-            this.btnReloadIPV4.TabIndex = 9;
-            this.btnReloadIPV4.Text = "Undo Changes";
-            this.btnReloadIPV4.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveIPV4Profile
-            // 
-            this.btnSaveIPV4Profile.Location = new System.Drawing.Point(233, 46);
-            this.btnSaveIPV4Profile.Name = "btnSaveIPV4Profile";
-            this.btnSaveIPV4Profile.Size = new System.Drawing.Size(122, 23);
-            this.btnSaveIPV4Profile.TabIndex = 10;
-            this.btnSaveIPV4Profile.Text = "Save Profile";
-            this.btnSaveIPV4Profile.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(345, 21);
-            this.comboBox1.TabIndex = 11;
             // 
             // Form1
             // 
