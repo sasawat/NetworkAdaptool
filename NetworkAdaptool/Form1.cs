@@ -171,5 +171,30 @@ namespace NetworkAdaptool
             }
             log("Adapter Enabled!");
         }
+
+        private void btnRefreshAdapterList_Click(object sender, EventArgs e)
+        {
+            NetworkAdapter[] netadapters = NetworkAdapter.getNetworkAdapters();
+            List<string> names = new List<string>();
+            lbxAdapters.Items.Clear();
+            lbxAdapters.Items.AddRange(netadapters);
+
+            //Make sure all the controls are disabled until an item is selected
+            btnApplyIPV4.Enabled = false;
+            btnDisable.Enabled = false;
+            btnDisableEnable.Enabled = false;
+            btnEnable.Enabled = false;
+            btnRelease.Enabled = false;
+            btnReleaseRenew.Enabled = false;
+            btnReleaseRenewAll.Enabled = false;
+            btnReloadIPV4.Enabled = false;
+            btnRenew.Enabled = false;
+            btnSaveIPV4Profile.Enabled = false;
+            tbxDefaultGateway.Enabled = false;
+            tbxDNS1.Enabled = false;
+            tbxDNS2.Enabled = false;
+            tbxIPAddr.Enabled = false;
+            tbxSubnetMask.Enabled = false;
+        }
     }
 }

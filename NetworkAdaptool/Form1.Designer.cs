@@ -508,6 +508,7 @@
             this.btnRefreshAdapterList.TabIndex = 8;
             this.btnRefreshAdapterList.Text = "Refresh Adapter List";
             this.btnRefreshAdapterList.UseVisualStyleBackColor = true;
+            this.btnRefreshAdapterList.Click += new System.EventHandler(this.btnRefreshAdapterList_Click);
             // 
             // btnDisableEnable
             // 
