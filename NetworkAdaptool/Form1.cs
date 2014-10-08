@@ -244,11 +244,13 @@ namespace NetworkAdaptool
         {
             if(
                 !(
-                isIP(tbxIPAddr.Text) &&
-                isIP(tbxDNS1.Text) &&
-                isIP(tbxDNS2.Text) &&
-                isIP(tbxDefaultGateway.Text) &&
-                isIP(tbxSubnetMask.Text) &&
+                ((isIP(tbxDNS1.Text) && 
+                    isIP(tbxDNS2.Text)) 
+                    || rbtnAutoDNS.Checked)&&
+                ((isIP(tbxIPAddr.Text) && 
+                    isIP(tbxDefaultGateway.Text) && 
+                    isIP(tbxSubnetMask.Text)) || 
+                    rbtnDHCP.Checked) &&
                 (rbtnDHCP.Checked || rbtnStaticIP.Checked) &&
                 (rbtnAutoDNS.Checked || rbtnStaticDNS.Checked)
                 )
@@ -291,8 +293,8 @@ namespace NetworkAdaptool
             //Refresh the IP settings info. Wait a second for the settings to take hold as well.
             System.Threading.Thread.Sleep(1000);
             naSelectedAdapter.refreshManagementObjects();
-            populateIPV4Settings();
             log("Done.");
+            populateIPV4Settings();
         }
 
         /// <summary>
