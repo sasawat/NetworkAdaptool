@@ -41,6 +41,10 @@ namespace NetworkAdaptool
             tbxDNS2.Enabled = false;
             tbxIPAddr.Enabled = false;
             tbxSubnetMask.Enabled = false;
+            rbtnAutoDNS.Enabled = false;
+            rbtnDHCP.Enabled = false;
+            rbtnStaticDNS.Enabled = false;
+            rbtnStaticIP.Enabled = false;
         }
 
         private void lbxAdapters_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,6 +86,10 @@ namespace NetworkAdaptool
                 tbxDNS2.Enabled = true;
                 tbxIPAddr.Enabled = true;
                 tbxSubnetMask.Enabled =true;
+                rbtnAutoDNS.Enabled = true;
+                rbtnDHCP.Enabled = true;
+                rbtnStaticDNS.Enabled = true;
+                rbtnStaticIP.Enabled = true;
             }
             
         }
@@ -195,6 +203,23 @@ namespace NetworkAdaptool
             tbxDNS2.Enabled = false;
             tbxIPAddr.Enabled = false;
             tbxSubnetMask.Enabled = false;
+            rbtnAutoDNS.Enabled = false;
+            rbtnDHCP.Enabled = false;
+            rbtnStaticDNS.Enabled = false;
+            rbtnStaticIP.Enabled = false;
+
+            //Clear the text
+            tbxAdapterName.Text = "";
+            tbxAdapterType.Text = "";
+            tbxAdapterStatus.Text = "";
+            tbxAdapterMACAddr.Text = "";
+            tbxIsPhysical.Text = "";
+            tbxNetConnectionID.Text = "";
+            tbxIPAddr.Text = "";
+            tbxSubnetMask.Text = "";
+            tbxDefaultGateway.Text = ""; 
+            tbxDNS1.Text = "";
+            tbxDNS2.Text = "";
         }
     }
 }
