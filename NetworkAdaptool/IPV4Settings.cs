@@ -18,6 +18,8 @@ namespace NetworkAdaptool
         public string strDNS2;
         public string strDefaultGateway;
         public string strName;
+        public bool isDynamicIP;
+        public bool isDynamicDNS;
 
         /// <summary>
         /// Creates an IPV4Settings from a bunch of settings for IPV4... 
@@ -28,7 +30,15 @@ namespace NetworkAdaptool
         /// <param name="strDNS2">The alternate DNS server in format "x.x.x.x"</param>
         /// <param name="strDefaultGateway">The default gateway in format "x.x.x.x"</param>
         /// <param name="strName">The name for the profile.</param>
-        public IPV4Settings(string strIpAddr, string strSubnetMask, string strDNS1, string strDNS2, string strDefaultGateway, string strName)
+        public IPV4Settings(
+            string strIpAddr, 
+            string strSubnetMask, 
+            string strDNS1, 
+            string strDNS2, 
+            string strDefaultGateway, 
+            string strName, 
+            bool isDynamicIP, 
+            bool isDynamicDNS)
         {
             this.strIpAddr = strIpAddr;
             this.strSubnetMask = strSubnetMask;
@@ -36,6 +46,8 @@ namespace NetworkAdaptool
             this.strDNS2 = strDNS2;
             this.strDefaultGateway = strDefaultGateway;
             this.strName = strName;
+            this.isDynamicDNS = isDynamicDNS;
+            this.isDynamicIP = isDynamicIP;
         }
 
         /// <summary>
@@ -58,6 +70,8 @@ namespace NetworkAdaptool
             strDNS1 = (string)info.GetValue("strDNS1", typeof(string));
             strDNS2 = (string)info.GetValue("strDNS2", typeof(string));
             strDefaultGateway = (string)info.GetValue("strDefaultGateway", typeof(string));
+            isDynamicDNS = info.GetBoolean("isDynamicDNS");
+            isDynamicIP = info.GetBoolean("isDynamicIP");
         }
 
         /// <summary>
@@ -74,6 +88,8 @@ namespace NetworkAdaptool
             info.AddValue("strDNS1", strDNS1, typeof(string));
             info.AddValue("strDNS2", strDNS2, typeof(string));
             info.AddValue("strDefaultGateway", strDefaultGateway, typeof(string));
+            info.AddValue("isDynamicIP", isDynamicIP, typeof(bool));
+            info.AddValue("isDynamicDNS", isDynamicDNS, typeof(bool));
             info.AddValue("strName", strName, typeof(string));
         }
 
