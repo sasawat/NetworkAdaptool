@@ -347,5 +347,11 @@ namespace NetworkAdaptool
 
             return true;
         }
+
+        private void btnReloadIPV4_Click(object sender, EventArgs e)
+        {
+            naSelectedAdapter.refreshManagementObjects();
+            populateIPV4Settings();
+        }
     }
 }

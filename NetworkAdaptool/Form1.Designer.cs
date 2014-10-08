@@ -173,6 +173,7 @@
             this.btnReloadIPV4.TabIndex = 9;
             this.btnReloadIPV4.Text = "Undo Changes";
             this.btnReloadIPV4.UseVisualStyleBackColor = true;
+            this.btnReloadIPV4.Click += new System.EventHandler(this.btnReloadIPV4_Click);
             // 
             // btnApplyIPV4
             // 
