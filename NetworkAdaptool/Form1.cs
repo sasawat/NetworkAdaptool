@@ -353,5 +353,38 @@ namespace NetworkAdaptool
             naSelectedAdapter.refreshManagementObjects();
             populateIPV4Settings();
         }
+
+        private void btnRelease_Click(object sender, EventArgs e)
+        {
+            log("Releasing DHCP Lease");
+            naSelectedAdapter.refreshManagementObjects();
+            naSelectedAdapter.releaseDHCP();
+            log("Done");
+            naSelectedAdapter.refreshManagementObjects();
+        }
+
+        private void btnRenew_Click(object sender, EventArgs e)
+        {
+            log("Renewing DHCP Lease...");
+            naSelectedAdapter.refreshManagementObjects();
+            naSelectedAdapter.renewDHCP();
+            log("Done");
+            naSelectedAdapter.refreshManagementObjects();
+        }
+
+        private void btnReleaseRenew_Click(object sender, EventArgs e)
+        {
+            log("Releasing DHCP Lease...");
+            naSelectedAdapter.refreshManagementObjects();
+            naSelectedAdapter.releaseDHCP();
+            log("Done");
+            log("Renewing DHCP Lease...");
+            naSelectedAdapter.refreshManagementObjects();
+            naSelectedAdapter.renewDHCP();
+            log("Done");
+            naSelectedAdapter.refreshManagementObjects();
+        }
+
+
     }
 }

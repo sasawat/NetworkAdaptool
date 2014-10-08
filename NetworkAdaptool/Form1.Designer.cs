@@ -75,7 +75,6 @@
             this.btnRefreshAdapterList = new System.Windows.Forms.Button();
             this.btnDisableEnable = new System.Windows.Forms.Button();
             this.btnReleaseRenew = new System.Windows.Forms.Button();
-            this.btnReleaseRenewAll = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.tbxLog = new System.Windows.Forms.TextBox();
             this.MenuBar.SuspendLayout();
@@ -492,6 +491,7 @@
             this.btnRelease.TabIndex = 6;
             this.btnRelease.Text = "DHCP Release";
             this.btnRelease.UseVisualStyleBackColor = true;
+            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
             // 
             // btnRenew
             // 
@@ -501,6 +501,7 @@
             this.btnRenew.TabIndex = 7;
             this.btnRenew.Text = "DHCP Renew";
             this.btnRenew.UseVisualStyleBackColor = true;
+            this.btnRenew.Click += new System.EventHandler(this.btnRenew_Click);
             // 
             // btnRefreshAdapterList
             // 
@@ -530,21 +531,12 @@
             this.btnReleaseRenew.TabIndex = 10;
             this.btnReleaseRenew.Text = "Release Renew";
             this.btnReleaseRenew.UseVisualStyleBackColor = true;
-            // 
-            // btnReleaseRenewAll
-            // 
-            this.btnReleaseRenewAll.Location = new System.Drawing.Point(758, 204);
-            this.btnReleaseRenewAll.Name = "btnReleaseRenewAll";
-            this.btnReleaseRenewAll.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnReleaseRenewAll.Size = new System.Drawing.Size(124, 23);
-            this.btnReleaseRenewAll.TabIndex = 11;
-            this.btnReleaseRenewAll.Text = "Release Renew All";
-            this.btnReleaseRenewAll.UseVisualStyleBackColor = true;
+            this.btnReleaseRenew.Click += new System.EventHandler(this.btnReleaseRenew_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(755, 230);
+            this.label12.Location = new System.Drawing.Point(755, 202);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(25, 13);
             this.label12.TabIndex = 12;
@@ -552,12 +544,12 @@
             // 
             // tbxLog
             // 
-            this.tbxLog.Location = new System.Drawing.Point(755, 251);
+            this.tbxLog.Location = new System.Drawing.Point(755, 221);
             this.tbxLog.MaxLength = 999999999;
             this.tbxLog.Multiline = true;
             this.tbxLog.Name = "tbxLog";
             this.tbxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbxLog.Size = new System.Drawing.Size(241, 167);
+            this.tbxLog.Size = new System.Drawing.Size(241, 197);
             this.tbxLog.TabIndex = 13;
             // 
             // Form1
@@ -567,7 +559,6 @@
             this.ClientSize = new System.Drawing.Size(1008, 430);
             this.Controls.Add(this.tbxLog);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.btnReleaseRenewAll);
             this.Controls.Add(this.btnReleaseRenew);
             this.Controls.Add(this.btnDisableEnable);
             this.Controls.Add(this.btnRefreshAdapterList);
@@ -614,7 +605,6 @@
         private System.Windows.Forms.Button btnRefreshAdapterList;
         private System.Windows.Forms.Button btnDisableEnable;
         private System.Windows.Forms.Button btnReleaseRenew;
-        private System.Windows.Forms.Button btnReleaseRenewAll;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
