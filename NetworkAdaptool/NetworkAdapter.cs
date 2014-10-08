@@ -237,6 +237,42 @@ namespace NetworkAdaptool
             }
         }
 
+        public uint uiInterfaceIndex { get; private set; }
+
+        public bool isHwOn
+        {
+            get
+            {
+                UInt16 statuscode;
+                try
+                {
+                    statuscode = (UInt16)this.moAdapter["NetConnectionStatus"];
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+                switch (statuscode)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            private set
+            {
+
+            }
+        }
         public bool isEnabled
         {
             get
@@ -299,6 +335,7 @@ namespace NetworkAdaptool
             this.strName = (string)this.moAdapter["Name"];
             this.strAdapterType = (string)this.moAdapter["AdapterType"];
             this.strCaption = (string)this.moAdapter["Caption"];
+            this.uiInterfaceIndex = (uint)moAdapter["InterfaceIndex"];
         }
 
         /// <summary>
@@ -425,6 +462,26 @@ namespace NetworkAdaptool
         }
 
         /// <summary>
+        /// Refreshes the NetworkAdapter's Win32_NetworkAdapter/Configuration ManagementObjects
+        /// </summary>
+        /// <returns>If a new Win32_NetworkAdapter/Configuration ManagementObjects were found</returns>
+        public bool refreshManagementObjects()
+        {
+            ManagementObject[] moArrNetworkAdapters = getNetworkAdapterMOs();
+
+            foreach(ManagementObject moNetworkAdapter in moArrNetworkAdapters)
+            {
+                if((uint)moNetworkAdapter["InterfaceIndex"] == this.uiInterfaceIndex)
+                {
+                    this.moAdapter = moNetworkAdapter;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Sets a static IP
         /// </summary>
         /// <param name="strIp">String containing the IP address to set. Can be IPV4 or IPV6. e.g. "13.37.69.69"</param>
@@ -545,7 +602,7 @@ namespace NetworkAdaptool
         /// <summary>
         /// Enables the network adapter
         /// </summary>
-        public void enable()
+        public void enableAdapter()
         {
             //Enable has no paramters so we can just call it
             moAdapter.InvokeMethod("Enable", moAdapter.GetMethodParameters("Enable"), null);
@@ -554,7 +611,7 @@ namespace NetworkAdaptool
         /// <summary>
         /// Disables the network adapter
         /// </summary>
-        public void disable()
+        public void disableAdapter()
         {
             //Disable has no paramters so we can just call it
             moAdapter.InvokeMethod("Disable", moAdapter.GetMethodParameters("Disable"), null);

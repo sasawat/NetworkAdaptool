@@ -480,6 +480,7 @@
             this.btnDisable.TabIndex = 5;
             this.btnDisable.Text = "Disable Adapter";
             this.btnDisable.UseVisualStyleBackColor = true;
+            this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
             // 
             // btnRelease
             // 
@@ -516,6 +517,7 @@
             this.btnDisableEnable.TabIndex = 9;
             this.btnDisableEnable.Text = "Restart Adapter";
             this.btnDisableEnable.UseVisualStyleBackColor = true;
+            this.btnDisableEnable.Click += new System.EventHandler(this.btnDisableEnable_Click);
             // 
             // btnReleaseRenew
             // 

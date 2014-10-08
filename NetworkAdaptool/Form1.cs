@@ -12,6 +12,8 @@ namespace NetworkAdaptool
 {
     public partial class Form1 : Form
     {
+        NetworkAdapter naSelectedAdapter;
+
         public Form1()
         {
             InitializeComponent();
@@ -43,9 +45,12 @@ namespace NetworkAdaptool
 
         private void lbxAdapters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Repopulate all the fields
             NetworkAdapter naSelected = (NetworkAdapter)lbxAdapters.SelectedItem;
 
+            //Make sure the NetworkAdapter is up to date
+            naSelected.refreshManagementObjects();
+
+            //Repopulate all the fields
             log("Populating Adapter Information");
             tbxAdapterName.Text = naSelected.strName;
             tbxAdapterType.Text = naSelected.strAdapterType;
@@ -55,6 +60,8 @@ namespace NetworkAdaptool
             tbxNetConnectionID.Text = naSelected.strNetConnectionID;
 
             reloadIPV4Settings(naSelected);
+
+            naSelectedAdapter = naSelected;
 
             //Enable buttons and stuff
             if (btnSaveIPV4Profile.Enabled == false)
@@ -111,6 +118,58 @@ namespace NetworkAdaptool
 
         private void btnEnable_Click(object sender, EventArgs e)
         {
+            log("Enabling Adapter. Please wait...");
+            if (naSelectedAdapter.isHwOn)
+            {
+                log("ERROR: Adapter Already Enabled");
+                return;
+            }
+            naSelectedAdapter.enableAdapter();
+            while (!naSelectedAdapter.isHwOn)
+            {
+                naSelectedAdapter.refreshManagementObjects();
+            }
+            log("Adapter Enabled!");
+
+        }
+
+        private void btnDisable_Click(object sender, EventArgs e)
+        {
+            log("Disabling Adapter. Please wait...");
+            if (!naSelectedAdapter.isHwOn)
+            {
+                log("ERROR: Adapter Already Disabled");
+                return;
+            }
+            naSelectedAdapter.disableAdapter();
+            while (naSelectedAdapter.isHwOn)
+            {
+                naSelectedAdapter.refreshManagementObjects();
+            }
+            log("Adapter Disabled!");
+        }
+
+        private void btnDisableEnable_Click(object sender, EventArgs e)
+        {
+            log("Disabling Adapter. Please wait...");
+            if (!naSelectedAdapter.isHwOn)
+            {
+                log("ERROR: Adapter Already Disabled");
+                return;
+            }
+            naSelectedAdapter.disableAdapter();
+            while (naSelectedAdapter.isHwOn)
+            {
+                naSelectedAdapter.refreshManagementObjects();
+            }
+            log("Adapter Disabled!");
+            log("Re-enabling Adapter. Please wait...");
+            naSelectedAdapter.enableAdapter();
+            while (!naSelectedAdapter.isHwOn)
+            {
+                naSelectedAdapter.refreshManagementObjects();
+            }
+            log("Adapter Enabled!");
         }
     }
 }
