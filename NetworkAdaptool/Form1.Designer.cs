@@ -182,6 +182,7 @@
             this.btnApplyIPV4.TabIndex = 8;
             this.btnApplyIPV4.Text = "Apply";
             this.btnApplyIPV4.UseVisualStyleBackColor = true;
+            this.btnApplyIPV4.Click += new System.EventHandler(this.btnApplyIPV4_Click);
             // 
             // groupBox4
             // 

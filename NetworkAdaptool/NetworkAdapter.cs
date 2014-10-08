@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Generic;                                                                                      
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -467,13 +467,14 @@ namespace NetworkAdaptool
         /// <returns>If a new Win32_NetworkAdapter/Configuration ManagementObjects were found</returns>
         public bool refreshManagementObjects()
         {
-            ManagementObject[] moArrNetworkAdapters = getNetworkAdapterMOs();
+            NetworkAdapter[] naArrAdapters = getNetworkAdapters();
 
-            foreach(ManagementObject moNetworkAdapter in moArrNetworkAdapters)
+            foreach(NetworkAdapter naAdapter in naArrAdapters)
             {
-                if((uint)moNetworkAdapter["InterfaceIndex"] == this.uiInterfaceIndex)
+                if(naAdapter.uiInterfaceIndex == this.uiInterfaceIndex)
                 {
-                    this.moAdapter = moNetworkAdapter;
+                    this.moAdapter = naAdapter.moAdapter;
+                    this.moAdapterCfg = naAdapter.moAdapterCfg;
                     return true;
                 }
             }
@@ -597,6 +598,8 @@ namespace NetworkAdaptool
             //Make a ManagementBaseObject for parameters for the call to SetDNSServerSearchOrder
             ManagementBaseObject mboNewGateway = moAdapterCfg.GetMethodParameters("SetDNSServerSearchOrder");
             mboNewGateway["DNSServerSearchOrder"] = strarrIps;
+
+            moAdapterCfg.InvokeMethod("SetDNSServerSearchOrder", mboNewGateway, null);
         }
 
         /// <summary>
