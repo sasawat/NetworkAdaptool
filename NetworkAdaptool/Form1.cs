@@ -21,9 +21,11 @@ namespace NetworkAdaptool
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            log("Discovering Network Adapters...");
             NetworkAdapter[] netadapters = NetworkAdapter.getNetworkAdapters();
             List<string> names = new List<string>();
             lbxAdapters.Items.AddRange(netadapters);
+            log("Done.");
 
             //Make sure all the controls are disabled until an item is selected
             btnApplyIPV4.Enabled = false;
@@ -32,7 +34,6 @@ namespace NetworkAdaptool
             btnEnable.Enabled = false;
             btnRelease.Enabled = false;
             btnReleaseRenew.Enabled = false;
-            btnReleaseRenewAll.Enabled = false;
             btnReloadIPV4.Enabled = false;
             btnRenew.Enabled = false;
             btnSaveIPV4Profile.Enabled = false;
@@ -62,14 +63,12 @@ namespace NetworkAdaptool
             //Enable buttons and stuff
             if (btnSaveIPV4Profile.Enabled == false)
             {
-                log("Enabling settings");
                 btnApplyIPV4.Enabled = true;
                 btnDisable.Enabled = true;
                 btnDisableEnable.Enabled = true;
                 btnEnable.Enabled = true;
                 btnRelease.Enabled = true;
                 btnReleaseRenew.Enabled = true;
-                btnReleaseRenewAll.Enabled = true;
                 btnReloadIPV4.Enabled = true;
                 btnRenew.Enabled = true;
                 btnSaveIPV4Profile.Enabled = true;
@@ -91,13 +90,14 @@ namespace NetworkAdaptool
         /// </summary>
         private void populateAdapterInfo()
         {
-            log("Populating Adapter Information");
+            log("Populating Adapter Information...");
             tbxAdapterName.Text = naSelectedAdapter.strName;
             tbxAdapterType.Text = naSelectedAdapter.strAdapterType;
             tbxAdapterStatus.Text = naSelectedAdapter.strNetConnectionStatus;
             tbxAdapterMACAddr.Text = naSelectedAdapter.strMACAddr;
             tbxIsPhysical.Text = naSelectedAdapter.isPhysicalAdapter ? "Yes" : "No";
             tbxNetConnectionID.Text = naSelectedAdapter.strNetConnectionID;
+            log("Done");
         }
 
         /// <summary>
@@ -105,10 +105,10 @@ namespace NetworkAdaptool
         /// </summary>
         private void populateIPV4Settings()
         {
-            log("Reading IPV4 Settings");
+            log("Reading IPV4 Settings...");
             if (!naSelectedAdapter.isEnabled)
             {
-                log("Adapter Disabled, no IPV4 settings");
+                log("WARNING: Adapter Disabled, no IPV4 settings.");
                 return;
             }
             tbxIPAddr.Text = naSelectedAdapter.strIpAddr;
@@ -126,7 +126,8 @@ namespace NetworkAdaptool
             tbxDNS1.Text = naSelectedAdapter.strDNS1;
             tbxDNS2.Text = naSelectedAdapter.strDNS2;
             //Cannot check whether we want static or auto DNS so we just static
-            rbtnStaticDNS.Checked = true; 
+            rbtnStaticDNS.Checked = true;
+            log("Done.");
         }
 
         /// <summary>
@@ -142,7 +143,7 @@ namespace NetworkAdaptool
 
         private void btnEnable_Click(object sender, EventArgs e)
         {
-            log("Enabling Adapter. Please wait...");
+            log("Enabling Adapter...");
             if (naSelectedAdapter.isHwOn)
             {
                 log("ERROR: Adapter Already Enabled");
@@ -153,13 +154,13 @@ namespace NetworkAdaptool
             {
                 naSelectedAdapter.refreshManagementObjects();
             }
-            log("Adapter Enabled!");
+            log("Done.");
 
         }
 
         private void btnDisable_Click(object sender, EventArgs e)
         {
-            log("Disabling Adapter. Please wait...");
+            log("Disabling Adapter...");
             if (!naSelectedAdapter.isHwOn)
             {
                 log("ERROR: Adapter Already Disabled");
@@ -170,15 +171,15 @@ namespace NetworkAdaptool
             {
                 naSelectedAdapter.refreshManagementObjects();
             }
-            log("Adapter Disabled!");
+            log("Done.");
         }
 
         private void btnDisableEnable_Click(object sender, EventArgs e)
         {
-            log("Disabling Adapter. Please wait...");
+            log("Disabling Adapter...");
             if (!naSelectedAdapter.isHwOn)
             {
-                log("ERROR: Adapter Already Disabled");
+                log("ERROR: Adapter Already Disabled.");
                 return;
             }
             naSelectedAdapter.disableAdapter();
@@ -186,22 +187,24 @@ namespace NetworkAdaptool
             {
                 naSelectedAdapter.refreshManagementObjects();
             }
-            log("Adapter Disabled!");
-            log("Re-enabling Adapter. Please wait...");
+            log("Done.");
+            log("Re-enabling Adapter...");
             naSelectedAdapter.enableAdapter();
             while (!naSelectedAdapter.isHwOn)
             {
                 naSelectedAdapter.refreshManagementObjects();
             }
-            log("Adapter Enabled!");
+            log("Done.");
         }
 
         private void btnRefreshAdapterList_Click(object sender, EventArgs e)
         {
+            log("Discovering Network Adapters...");
             NetworkAdapter[] netadapters = NetworkAdapter.getNetworkAdapters();
             List<string> names = new List<string>();
             lbxAdapters.Items.Clear();
             lbxAdapters.Items.AddRange(netadapters);
+            log("Done.");
 
             //Make sure all the controls are disabled until an item is selected
             btnApplyIPV4.Enabled = false;
@@ -210,7 +213,6 @@ namespace NetworkAdaptool
             btnEnable.Enabled = false;
             btnRelease.Enabled = false;
             btnReleaseRenew.Enabled = false;
-            btnReleaseRenewAll.Enabled = false;
             btnReloadIPV4.Enabled = false;
             btnRenew.Enabled = false;
             btnSaveIPV4Profile.Enabled = false;
@@ -264,7 +266,7 @@ namespace NetworkAdaptool
             //Refresh our network adapter ManagementObjects just in case. Things, can, like change.
             naSelectedAdapter.refreshManagementObjects();
 
-            log("Applying IPV4 Settings");
+            log("Applying IPV4 Settings...");
             //IP Address settings
             if(rbtnDHCP.Checked)
             {
@@ -290,7 +292,7 @@ namespace NetworkAdaptool
             System.Threading.Thread.Sleep(1000);
             naSelectedAdapter.refreshManagementObjects();
             populateIPV4Settings();
-            log("IPV4 Settings applied");
+            log("Done.");
         }
 
         /// <summary>
@@ -356,10 +358,10 @@ namespace NetworkAdaptool
 
         private void btnRelease_Click(object sender, EventArgs e)
         {
-            log("Releasing DHCP Lease");
+            log("Releasing DHCP Lease...");
             naSelectedAdapter.refreshManagementObjects();
             naSelectedAdapter.releaseDHCP();
-            log("Done");
+            log("Done.");
             naSelectedAdapter.refreshManagementObjects();
         }
 
@@ -368,7 +370,7 @@ namespace NetworkAdaptool
             log("Renewing DHCP Lease...");
             naSelectedAdapter.refreshManagementObjects();
             naSelectedAdapter.renewDHCP();
-            log("Done");
+            log("Done.");
             naSelectedAdapter.refreshManagementObjects();
         }
 
@@ -377,11 +379,11 @@ namespace NetworkAdaptool
             log("Releasing DHCP Lease...");
             naSelectedAdapter.refreshManagementObjects();
             naSelectedAdapter.releaseDHCP();
-            log("Done");
+            log("Done.");
             log("Renewing DHCP Lease...");
             naSelectedAdapter.refreshManagementObjects();
             naSelectedAdapter.renewDHCP();
-            log("Done");
+            log("Done.");
             naSelectedAdapter.refreshManagementObjects();
         }
 
