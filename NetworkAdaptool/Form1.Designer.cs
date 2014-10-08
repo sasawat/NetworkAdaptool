@@ -555,6 +555,7 @@
             this.tbxLog.MaxLength = 999999999;
             this.tbxLog.Multiline = true;
             this.tbxLog.Name = "tbxLog";
+            this.tbxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxLog.Size = new System.Drawing.Size(241, 167);
             this.tbxLog.TabIndex = 13;
             // 

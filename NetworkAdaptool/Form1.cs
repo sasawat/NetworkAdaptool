@@ -136,6 +136,8 @@ namespace NetworkAdaptool
         public void log(string strMessage)
         {
             tbxLog.Text += strMessage + "\r\n";
+            tbxLog.Select(tbxLog.Text.Length, 0);
+            tbxLog.ScrollToCaret();
         }
 
         private void btnEnable_Click(object sender, EventArgs e)
