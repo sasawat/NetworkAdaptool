@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;                                              
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -76,13 +76,13 @@ namespace NetworkAdaptool
                 tbxDNS1.Enabled = true;
                 tbxDNS2.Enabled = true;
                 tbxIPAddr.Enabled = true;
-                tbxSubnetMask.Enabled =true;
+                tbxSubnetMask.Enabled = true;
                 rbtnAutoDNS.Enabled = true;
                 rbtnDHCP.Enabled = true;
                 rbtnStaticDNS.Enabled = true;
                 rbtnStaticIP.Enabled = true;
             }
-            
+
         }
 
         /// <summary>
@@ -235,58 +235,70 @@ namespace NetworkAdaptool
             tbxNetConnectionID.Text = "";
             tbxIPAddr.Text = "";
             tbxSubnetMask.Text = "";
-            tbxDefaultGateway.Text = ""; 
+            tbxDefaultGateway.Text = "";
             tbxDNS1.Text = "";
             tbxDNS2.Text = "";
         }
 
         private void btnApplyIPV4_Click(object sender, EventArgs e)
         {
-            if(
-                !(
-                ((isIP(tbxDNS1.Text) && 
-                    isIP(tbxDNS2.Text)) 
-                    || rbtnAutoDNS.Checked)&&
-                ((isIP(tbxIPAddr.Text) && 
-                    isIP(tbxDefaultGateway.Text) && 
-                    isIP(tbxSubnetMask.Text)) || 
-                    rbtnDHCP.Checked) &&
-                (rbtnDHCP.Checked || rbtnStaticIP.Checked) &&
-                (rbtnAutoDNS.Checked || rbtnStaticDNS.Checked)
-                )
+            //Validate input
+            if (
+                //IP Address and Subnet
+                ((!isIP(tbxIPAddr.Text) || !isIP(tbxSubnetMask.Text)) && rbtnStaticIP.Checked) ||
+                //Default Gateway
+                (tbxDefaultGateway.Text.Length != 0 && !isIP(tbxDefaultGateway.Text)) ||
+                //DNS
+                (tbxDNS1.Text.Length != 0 && !isIP(tbxDNS1.Text)) ||
+                (tbxDNS2.Text.Length != 0 && !isIP(tbxDNS2.Text)) ||
+                //Radio buttons
+                !(rbtnStaticIP.Checked || rbtnDHCP.Checked) ||
+                !(rbtnAutoDNS.Checked || rbtnStaticDNS.Checked)
                 )
             {
                 //A little error message for the user
-                MessageBox.Show("Invalid Input. Please Make sure that:\r\n" + 
-                    "\t1. IP Address, DNS, and Default Gateway are valid IPV4 Addresses.\r\n" + 
+                MessageBox.Show("Invalid Input. Please Make sure that:\r\n" +
+                    "\t1. IP Address, DNS, and Default Gateway (if applicable) are valid IPV4 Addresses.\r\n" +
                     "\t2. Subnet Mask is mask format, not CIDR.\r\n" +
                     "\t3. that you have selected automatic or static IP Address and DNS.");
                 log("Invalid IPV4 Settings.");
                 return;
             }
-            
+
             //Refresh our network adapter ManagementObjects just in case. Things, can, like change.
             naSelectedAdapter.refreshManagementObjects();
 
             log("Applying IPV4 Settings...");
             //IP Address settings
-            if(rbtnDHCP.Checked)
+            if (rbtnDHCP.Checked)
             {
                 naSelectedAdapter.enableDHCP();
             }
             else
             {
                 naSelectedAdapter.setStaticIP(tbxIPAddr.Text, tbxSubnetMask.Text);
-                naSelectedAdapter.setDefaultGateway(tbxDefaultGateway.Text);
+                if (tbxDefaultGateway.Text.Length != 0)
+                {
+                    naSelectedAdapter.setDefaultGateway(tbxDefaultGateway.Text);
+                }
             }
 
             //DNS Settings
-            if(rbtnAutoDNS.Checked)
+            if (rbtnAutoDNS.Checked)
             {
                 naSelectedAdapter.setDNSServerDynamic();
             }
             else
             {
+                if (tbxDNS2.Text.Length != 0 && tbxDNS1.Text.Length == 0)
+                {
+                    naSelectedAdapter.setDNSServers(new string[] { tbxDNS2.Text });
+                }
+                if(tbxDNS1.Text.Length != 0 && tbxDNS2.Text.Length == 0)
+                {
+                    naSelectedAdapter.setDNSServers(new string[] { tbxDNS1.Text});
+                }
+
                 naSelectedAdapter.setDNSServers(new string[] { tbxDNS1.Text, tbxDNS2.Text });
             }
 
@@ -315,7 +327,7 @@ namespace NetworkAdaptool
             for (int i = 0; i < 3; i++)
             {
                 //Make sure there is a dot like somewhere
-                if ((iEndPos = strMaybeIp.IndexOf(".",iStartPos)) == -1)
+                if ((iEndPos = strMaybeIp.IndexOf(".", iStartPos)) == -1)
                 {
                     return false;
                 }
@@ -338,7 +350,7 @@ namespace NetworkAdaptool
             try
             {
                 //Make sure we have a valid number after the last dot
-                if (int.Parse(strMaybeIp.Substring(iEndPos+1)) > 255)
+                if (int.Parse(strMaybeIp.Substring(iEndPos + 1)) > 255)
                 {
                     return false;
                 }
