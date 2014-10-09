@@ -40,6 +40,42 @@ namespace NetworkAdaptool
             bool isDynamicIP, 
             bool isDynamicDNS)
         {
+            if (isDynamicIP)
+            {
+                strIpAddr = "dynamic";
+                strSubnetMask = "dynamic";
+                strDefaultGateway = "dynamic";
+            }
+            else
+            {
+                if (strIpAddr == null ||
+                    strSubnetMask == null) 
+                {
+                    throw new NullReferenceException();
+                }
+
+                if(strDefaultGateway == null)
+                {
+                    strDefaultGateway = "notset";
+                }
+            }
+
+            if(isDynamicDNS)
+            {
+                strDNS1 = "dynamic";
+                strDNS2 = "dynamic";
+            }
+            else
+            {
+                if(strDNS1 == null)
+                {
+                    strDNS1 = "notset";
+                }
+                if(strDNS2 == null)
+                {
+                    strDNS2 = "notset";
+                }
+            }
             this.strIpAddr = strIpAddr;
             this.strSubnetMask = strSubnetMask;
             this.strDNS1 = strDNS1;
