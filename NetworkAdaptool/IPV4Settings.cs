@@ -192,5 +192,10 @@ namespace NetworkAdaptool
                 throw new SerializationException("Stream does not contain Dictionary<string, IPV4Settings>");
             }
         }
+
+        public override string ToString()
+        {
+            return strName;
+        }
     }
 }

@@ -35,7 +35,7 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profileManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxProfiles = new System.Windows.Forms.ComboBox();
             this.btnSaveIPV4Profile = new System.Windows.Forms.Button();
             this.btnReloadIPV4 = new System.Windows.Forms.Button();
             this.btnApplyIPV4 = new System.Windows.Forms.Button();
@@ -134,7 +134,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbxProfiles);
             this.groupBox1.Controls.Add(this.btnSaveIPV4Profile);
             this.groupBox1.Controls.Add(this.btnReloadIPV4);
             this.groupBox1.Controls.Add(this.btnApplyIPV4);
@@ -147,13 +147,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "IPV4 Settings";
             // 
-            // comboBox1
+            // cbxProfiles
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(345, 21);
-            this.comboBox1.TabIndex = 11;
+            this.cbxProfiles.FormattingEnabled = true;
+            this.cbxProfiles.Location = new System.Drawing.Point(10, 19);
+            this.cbxProfiles.Name = "cbxProfiles";
+            this.cbxProfiles.Size = new System.Drawing.Size(345, 21);
+            this.cbxProfiles.TabIndex = 11;
             // 
             // btnSaveIPV4Profile
             // 
@@ -638,7 +638,7 @@
         private System.Windows.Forms.Button btnApplyIPV4;
         private System.Windows.Forms.Button btnReloadIPV4;
         private System.Windows.Forms.Button btnSaveIPV4Profile;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxProfiles;
     }
 }
 

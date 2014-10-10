@@ -27,6 +27,9 @@ namespace NetworkAdaptool
             lbxAdapters.Items.AddRange(netadapters);
             log("Done.");
 
+            cbxProfiles.Items.AddRange(Program.dicProfiles.Keys.ToArray());
+            cbxProfiles.Items.Add("");
+
             //Make sure all the controls are disabled until an item is selected
             btnApplyIPV4.Enabled = false;
             btnDisable.Enabled = false;
