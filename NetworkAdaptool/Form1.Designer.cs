@@ -154,6 +154,7 @@
             this.cbxProfiles.Name = "cbxProfiles";
             this.cbxProfiles.Size = new System.Drawing.Size(345, 21);
             this.cbxProfiles.TabIndex = 11;
+            this.cbxProfiles.SelectedIndexChanged += new System.EventHandler(this.cbxProfiles_SelectedIndexChanged);
             // 
             // btnSaveIPV4Profile
             // 

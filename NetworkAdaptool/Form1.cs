@@ -404,6 +404,73 @@ namespace NetworkAdaptool
             naSelectedAdapter.refreshManagementObjects();
         }
 
+        private void cbxProfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string strSelectedProfile = (string)cbxProfiles.SelectedItem;
+            if(strSelectedProfile == "")
+            {
+                return;
+            }
+
+            IPV4Settings ipv4setSelected;
+            try
+            {
+                ipv4setSelected = Program.dicProfiles[strSelectedProfile];
+            }catch(Exception ex)
+            {
+                log("ERROR: Selected Profile fails to exist.");
+                return;
+            }
+
+            if(ipv4setSelected.isDynamicIP)
+            {
+                rbtnDHCP.Checked = true;
+                tbxIPAddr.Text = "";
+                tbxDefaultGateway.Text = "";
+                tbxSubnetMask.Text = "";
+            }
+            else
+            {
+                rbtnStaticIP.Checked = true;
+                tbxIPAddr.Text = ipv4setSelected.strIpAddr;
+                tbxSubnetMask.Text = ipv4setSelected.strSubnetMask;
+                if (ipv4setSelected.strDefaultGateway == "notset")
+                {
+                    tbxDefaultGateway.Text = "";
+                }else
+                {
+                    tbxDefaultGateway.Text = ipv4setSelected.strDefaultGateway;
+                }
+            }
+
+            if(ipv4setSelected.isDynamicDNS)
+            {
+                rbtnAutoDNS.Checked = true;
+                tbxDNS1.Text = "";
+                tbxDNS2.Text = "";
+            }
+            else
+            {
+                rbtnStaticDNS.Checked = true;
+                if(ipv4setSelected.strDNS1 == "notset")
+                {
+                    tbxDNS1.Text = "";
+                }else
+                {
+                    tbxDNS1.Text = ipv4setSelected.strDNS1;
+                }
+                if (ipv4setSelected.strDNS2 == "notset")
+                {
+                    tbxDNS2.Text = "";
+                }
+                else
+                {
+                    tbxDNS2.Text = ipv4setSelected.strDNS2;
+                }
+            }
+            log("Settings form populated with saved profile.");
+        }
+
 
     }
 }
