@@ -27,7 +27,7 @@ namespace NetworkAdaptool
         /// <summary>
         /// Loads profiles from the default profile library file
         /// </summary>
-        static void loadProfiles()
+        public static void loadProfiles()
         {
             if(File.Exists("profilelibrary"))
             {
@@ -48,7 +48,7 @@ namespace NetworkAdaptool
         /// <summary>
         /// Saves profiles to the default profile library file
         /// </summary>
-        static void saveProfiles()
+        public static void saveProfiles()
         {
             FileStream fsProfiles = File.Create("profilelibrary");
             IPV4Settings.writeLibrary(fsProfiles, dicProfiles);

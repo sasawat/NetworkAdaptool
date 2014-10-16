@@ -471,6 +471,36 @@ namespace NetworkAdaptool
             log("Settings form populated with saved profile.");
         }
 
+        private void btnSaveIPV4Profile_Click(object sender, EventArgs e)
+        {
+            ProfileNaming formProfileName = new ProfileNaming();
+            formProfileName.ShowDialog();
+
+            if(formProfileName.result == "PROFILE CREATION CANCELED")
+            {
+                return;
+            }
+
+            IPV4Settings ipv4settingNew = new IPV4Settings(
+                rbtnDHCP.Checked ? null : tbxIPAddr.Text,
+                rbtnDHCP.Checked ? null : tbxSubnetMask.Text,
+                rbtnAutoDNS.Checked ? null : tbxDNS1.Text,
+                rbtnAutoDNS.Checked ? null : tbxDNS2.Text,
+                tbxDefaultGateway.Text,
+                formProfileName.result,
+                rbtnDHCP.Checked,
+                rbtnAutoDNS.Checked
+                );
+
+            Program.dicProfiles.Add(formProfileName.result, ipv4settingNew);
+
+            Program.saveProfiles();
+
+            cbxProfiles.Items.Clear();
+            cbxProfiles.Items.AddRange(Program.dicProfiles.Keys.ToArray());
+            cbxProfiles.Items.Add("");
+        }
+
 
     }
 }

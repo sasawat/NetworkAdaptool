@@ -164,6 +164,7 @@
             this.btnSaveIPV4Profile.TabIndex = 10;
             this.btnSaveIPV4Profile.Text = "Save Profile";
             this.btnSaveIPV4Profile.UseVisualStyleBackColor = true;
+            this.btnSaveIPV4Profile.Click += new System.EventHandler(this.btnSaveIPV4Profile_Click);
             // 
             // btnReloadIPV4
             // 
