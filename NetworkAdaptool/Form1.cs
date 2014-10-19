@@ -501,6 +501,17 @@ namespace NetworkAdaptool
             cbxProfiles.Items.Add("");
         }
 
+        private void btnRmProfile_Click(object sender, EventArgs e)
+        {
+            if(cbxProfiles.SelectedText != "")
+            {
+                Program.dicProfiles.Remove(cbxProfiles.SelectedText);
+                cbxProfiles.Items.Clear();
+                cbxProfiles.Items.AddRange(Program.dicProfiles.Keys.ToArray());
+                cbxProfiles.Items.Add("");
+            }
+        }
+
 
     }
 }

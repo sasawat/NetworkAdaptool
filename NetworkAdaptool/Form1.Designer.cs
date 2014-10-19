@@ -35,6 +35,7 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profileManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRmProfile = new System.Windows.Forms.Button();
             this.cbxProfiles = new System.Windows.Forms.ComboBox();
             this.btnSaveIPV4Profile = new System.Windows.Forms.Button();
             this.btnReloadIPV4 = new System.Windows.Forms.Button();
@@ -134,6 +135,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnRmProfile);
             this.groupBox1.Controls.Add(this.cbxProfiles);
             this.groupBox1.Controls.Add(this.btnSaveIPV4Profile);
             this.groupBox1.Controls.Add(this.btnReloadIPV4);
@@ -146,6 +148,16 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "IPV4 Settings";
+            // 
+            // btnRmProfile
+            // 
+            this.btnRmProfile.Location = new System.Drawing.Point(10, 46);
+            this.btnRmProfile.Name = "btnRmProfile";
+            this.btnRmProfile.Size = new System.Drawing.Size(157, 23);
+            this.btnRmProfile.TabIndex = 12;
+            this.btnRmProfile.Text = "Remove Selected Profile";
+            this.btnRmProfile.UseVisualStyleBackColor = true;
+            this.btnRmProfile.Click += new System.EventHandler(this.btnRmProfile_Click);
             // 
             // cbxProfiles
             // 
@@ -641,6 +653,7 @@
         private System.Windows.Forms.Button btnReloadIPV4;
         private System.Windows.Forms.Button btnSaveIPV4Profile;
         private System.Windows.Forms.ComboBox cbxProfiles;
+        private System.Windows.Forms.Button btnRmProfile;
     }
 }
 
