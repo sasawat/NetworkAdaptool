@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lbxAdapters = new System.Windows.Forms.ListBox();
             this.MenuBar = new System.Windows.Forms.MenuStrip();
@@ -79,6 +80,7 @@
             this.btnReleaseRenew = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.tbxLog = new System.Windows.Forms.TextBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.MenuBar.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -117,8 +119,9 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -574,6 +577,11 @@
             this.tbxLog.Size = new System.Drawing.Size(241, 197);
             this.tbxLog.TabIndex = 13;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon";
+            this.notifyIcon1.Visible = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -663,6 +671,7 @@
         private System.Windows.Forms.Button btnSaveIPV4Profile;
         private System.Windows.Forms.ComboBox cbxProfiles;
         private System.Windows.Forms.Button btnRmProfile;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 
