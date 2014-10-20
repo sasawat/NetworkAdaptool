@@ -49,6 +49,8 @@ namespace NetworkAdaptool
             rbtnDHCP.Enabled = false;
             rbtnStaticDNS.Enabled = false;
             rbtnStaticIP.Enabled = false;
+
+            notifyIcon.Visible = true;
         }
 
         private void lbxAdapters_SelectedIndexChanged(object sender, EventArgs e)

@@ -120,10 +120,105 @@
   <metadata name="MenuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>118, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="notifyIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAIAEBAAAAAAIABoBAAAJgAAACAgAAAAACAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAEAE
+        AAAAAAAAAAAAAAAAAAAAAAAAAPL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wB5f/8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8A8v//APL//wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wB5f/8AeX//AHl//wDy//8A8v//APL//wDy//8AAAD/APL//wDy
+        //8AAAD/APL//wDy//8A8v//APL//wB5f/8AeX//AHl//wB5f/8A8v//APL//wDy//8A8v//AAAA/wDy
+        //8A8v//AAAA/wDy//8A8v//APL//wDy//8AeX//AHl//wB5f/8AeX//APL//wDy//8A8v//APL//wAA
+        AP8A8v//APL//wAAAP8A8v//APL//wDy//8A8v//AHl//wB5f/8AeX//ADw//wB5f/8AeX//AHl//wB5
+        f/8AAAD/APL//wDy//8AAAD/AHl//wB5f/8AeX//AHl//wA8P/8AeX//ALW//wB5f/8AeX//AAAA/wA8
+        P/8AeX//AHl//wDy//8A8v//AHl//wB5f/8APD//AAAA/wB5f/8AeX//ALW//wB5f/8AeX//AHl//wB5
+        f/8AeX//AHl//wB5f/8APD//ADw//wB5f/8AeX//AHl//wB5f/8AeX//AHl//wB5f/8A8v//APL//wDy
+        //8A8v//AHl//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wB5f/8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wB5f/8AeX//APL//wDy//8A8v//APL//wB5f/8AeX//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8AeX//AHl//wDy//8A8v//APL//wDy//8AeX//AHl//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//AHl//wB5f/8A8v//APL//wDy//8A8v//AHl//wB5f/8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wB5f/8APD//AHl//wB5f/8AeX//AHl//wA8P/8AeX//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8Atb//AHl//wB5f/8AeX//AHl//wB5f/8AeX//ALW//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA
+        //8AAP//AAD//wAA//8AAP//AAD//wAA//8oAAAAIAAAAEAAAAABACAAAAAAAIAQAAAAAAAAAAAAAAAA
+        AAAAAAAAAPL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/APL//wDy//8A8v//APL//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8A8v//APL//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8A8v//APL//wDy//8A8v//AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wDy//8A8v//AAAA/wAAAP8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy//8AAAD/AAAA/wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wAAAP8AAAD/APL//wDy//8AAAD/AAAA/wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wAAAP8AAAD/APL//wDy//8A8v//APL//wAA
+        AP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//AAAA/wAAAP8A8v//APL//wAA
+        AP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//AAAA/wAAAP8A8v//APL//wDy
+        //8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8AAAD/AAAA/wDy
+        //8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8AAAD/AAAA/wDy
+        //8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wAA
+        AP8AAAD/APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wAA
+        AP8AAAD/APL//wDy//8A8v//APL//wAAAP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//AAAA/wAAAP8A8v//APL//wAAAP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wAAAP8AAAD/APL//wDy//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/APL//wDy//8A8v//APL//wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8A8v//APL//wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8A8v//APL//wDy//8A8v//AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8AAAD/AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wAAAP8AAAD/AAAA/wDy//8A8v//APL//wDy//8A8v//APL//wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8AAAD/AAAA/wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wAA
+        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//AAAA/wAA
+        AP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8AAAD/AAAA/wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wAAAP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wAAAP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//AAAA/wAAAP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8AAAD/AAAA/wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wAAAP8AAAD/APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wAAAP8AAAD/APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//AAAA/wAA
+        AP8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//AAAA/wAAAP8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8AAAD/APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy//8A8v//APL//wDy
+        //8A8v//APL//wDy//8A8v//APL//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAAAAAAIABoBAAAJgAAACAgAAAAACAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAEAE

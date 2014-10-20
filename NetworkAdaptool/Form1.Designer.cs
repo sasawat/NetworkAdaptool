@@ -80,7 +80,7 @@
             this.btnReleaseRenew = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.tbxLog = new System.Windows.Forms.TextBox();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.MenuBar.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -577,10 +577,11 @@
             this.tbxLog.Size = new System.Drawing.Size(241, 197);
             this.tbxLog.TabIndex = 13;
             // 
-            // notifyIcon1
+            // notifyIcon
             // 
-            this.notifyIcon1.Text = "notifyIcon";
-            this.notifyIcon1.Visible = true;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "NetworkAdaptool";
+            this.notifyIcon.Visible = true;
             // 
             // Form1
             // 
@@ -671,7 +672,7 @@
         private System.Windows.Forms.Button btnSaveIPV4Profile;
         private System.Windows.Forms.ComboBox cbxProfiles;
         private System.Windows.Forms.Button btnRmProfile;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 
