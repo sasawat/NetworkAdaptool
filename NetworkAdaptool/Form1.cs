@@ -511,6 +511,28 @@ namespace NetworkAdaptool
                 cbxProfiles.Items.Add("");
             }
         }
+        private void rbtnDHCP_CheckedChanged(object sender, EventArgs e)
+        {
+            tbxDefaultGateway.Text = "";
+            tbxIPAddr.Text = "";
+            tbxSubnetMask.Text = "";
+        }
+
+        private void rbtnAutoDNS_CheckedChanged(object sender, EventArgs e)
+        {
+            tbxDNS1.Text = "";
+            tbxDNS2.Text = "";
+        }
+
+        private void staticip_keypress(object sender, KeyPressEventArgs e)
+        {
+            rbtnStaticIP.Checked = true;
+        }
+
+        private void staticdns_keypress(object sender, KeyPressEventArgs e)
+        {
+            rbtnStaticDNS.Checked = true;
+        }
 
 
     }

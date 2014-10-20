@@ -223,6 +223,7 @@
             this.rbtnAutoDNS.TabStop = true;
             this.rbtnAutoDNS.Text = "Automatic DNS";
             this.rbtnAutoDNS.UseVisualStyleBackColor = true;
+            this.rbtnAutoDNS.CheckedChanged += new System.EventHandler(this.rbtnAutoDNS_CheckedChanged);
             // 
             // rbtnStaticDNS
             // 
@@ -241,6 +242,7 @@
             this.tbxDNS2.Name = "tbxDNS2";
             this.tbxDNS2.Size = new System.Drawing.Size(171, 20);
             this.tbxDNS2.TabIndex = 3;
+            this.tbxDNS2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.staticdns_keypress);
             // 
             // tbxDNS1
             // 
@@ -248,6 +250,7 @@
             this.tbxDNS1.Name = "tbxDNS1";
             this.tbxDNS1.Size = new System.Drawing.Size(171, 20);
             this.tbxDNS1.TabIndex = 2;
+            this.tbxDNS1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.staticdns_keypress);
             // 
             // label5
             // 
@@ -294,6 +297,7 @@
             this.rbtnDHCP.TabStop = true;
             this.rbtnDHCP.Text = "Automatic IP (DHCP)";
             this.rbtnDHCP.UseVisualStyleBackColor = true;
+            this.rbtnDHCP.CheckedChanged += new System.EventHandler(this.rbtnDHCP_CheckedChanged);
             // 
             // rbtnStaticIP
             // 
@@ -312,6 +316,7 @@
             this.tbxDefaultGateway.Name = "tbxDefaultGateway";
             this.tbxDefaultGateway.Size = new System.Drawing.Size(199, 20);
             this.tbxDefaultGateway.TabIndex = 5;
+            this.tbxDefaultGateway.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.staticip_keypress);
             // 
             // tbxSubnetMask
             // 
@@ -319,6 +324,7 @@
             this.tbxSubnetMask.Name = "tbxSubnetMask";
             this.tbxSubnetMask.Size = new System.Drawing.Size(200, 20);
             this.tbxSubnetMask.TabIndex = 4;
+            this.tbxSubnetMask.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.staticip_keypress);
             // 
             // tbxIPAddr
             // 
@@ -326,6 +332,7 @@
             this.tbxIPAddr.Name = "tbxIPAddr";
             this.tbxIPAddr.Size = new System.Drawing.Size(200, 20);
             this.tbxIPAddr.TabIndex = 3;
+            this.tbxIPAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.staticip_keypress);
             // 
             // label3
             // 
