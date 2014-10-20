@@ -541,6 +541,11 @@ namespace NetworkAdaptool
             this.Close();
         }
 
+        private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Visible = !this.Visible;
+        }
+
 
     }
 }
