@@ -503,9 +503,9 @@ namespace NetworkAdaptool
 
         private void btnRmProfile_Click(object sender, EventArgs e)
         {
-            if(cbxProfiles.SelectedText != "")
+            if(cbxProfiles.SelectedItem.ToString() != "")
             {
-                Program.dicProfiles.Remove(cbxProfiles.SelectedText);
+                Program.dicProfiles.Remove(cbxProfiles.SelectedItem.ToString());
                 cbxProfiles.Items.Clear();
                 cbxProfiles.Items.AddRange(Program.dicProfiles.Keys.ToArray());
                 cbxProfiles.Items.Add("");
