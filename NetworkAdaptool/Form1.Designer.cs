@@ -604,7 +604,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "NetworkAdaptool";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
